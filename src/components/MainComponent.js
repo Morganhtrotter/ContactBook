@@ -9,10 +9,7 @@ import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 const mapStateToProps = state => {
 	return {
-		dishes: state.dishes,
-		contacts: state.contacts,
-		promotions: state.promotions,
-		leaders: state.leaders
+		contacts: state.contacts
 	}	
 }
 
@@ -34,7 +31,7 @@ class Main extends Component {
 
 		const HomePage = () => {
 			return(
-				<Home dishes={this.props.contacts.contacts} />
+				<Home contacts={this.props.contacts.contacts} />
 			);
 		}
 

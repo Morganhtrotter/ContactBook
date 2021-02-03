@@ -1,23 +1,27 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-function Home(props) {
-	console.log(props.dishes);
-
-	return(
-		<div className="container">
-			<div>
-				{props.dishes.map((dish) => {
-					return(
-						<div>
-							<p>{dish.name}</p>
-							<p>{dish.phone}</p>
-							<p>{dish.address}</p>
-						</div>
-					);
-				})}
+class Home extends Component {
+	constructor(props) {
+		super(props);
+	}
+	
+	render() {
+		return(
+			<div className="container">
+				<div>
+					{this.props.contacts.map((contact) => {
+						return(
+							<div>
+								<p>{contact.name}</p>
+								<p>{contact.phone}</p>
+								<p>{contact.address}</p>
+							</div>
+						);
+					})}
+				</div>
 			</div>
-		</div>
-	);
+		);
+	};
 }
 
 export default Home;
