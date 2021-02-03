@@ -4,22 +4,21 @@ import Header from './HeaderComponent';
 import Footer from './FooterComponent';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { postComment, fetchComments } from '../redux/ActionCreators';
-import { actions } from 'react-redux-form';
+import { postContact, fetchContacts } from '../redux/ActionCreators';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 const mapStateToProps = state => {
 	return {
 		dishes: state.dishes,
-		comments: state.comments,
+		contacts: state.contacts,
 		promotions: state.promotions,
 		leaders: state.leaders
 	}	
 }
 
 const mapDispatchToProps = (dispatch) => ({
-	postComment: (dishId, rating, author, comment) => dispatch(postComment(dishId, rating, author, comment)),
-	fetchComments: () => {dispatch(fetchComments())},
+	postContact: (dishId, rating, author, contact) => dispatch(postContact(dishId, rating, author, contact)),
+	fetchContacts: () => {dispatch(fetchContacts())},
 });
 
 class Main extends Component {
@@ -28,14 +27,14 @@ class Main extends Component {
 	}
 
 	componentDidMount() {
-		this.props.fetchComments();
+		this.props.fetchContacts();
 	}
 
 	render() {
 
 		const HomePage = () => {
 			return(
-				<Home dishes={this.props.comments.comments} />
+				<Home dishes={this.props.contacts.contacts} />
 			);
 		}
 

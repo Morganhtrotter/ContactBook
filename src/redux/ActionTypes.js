@@ -1,3 +1,3 @@
-export const ADD_COMMENT = 'ADD_COMMENT';
-export const ADD_COMMENTS = 'ADD_COMMENTS';
-export const COMMENTS_FAILED = 'COMMENTS_FAILED';
+export const ADD_CONTACT = 'ADD_CONTACT';
+export const ADD_CONTACTS = 'ADD_CONTACTS';
+export const CONTACTS_FAILED = 'CONTACTS_FAILED';

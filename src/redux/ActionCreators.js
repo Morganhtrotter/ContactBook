@@ -1,23 +1,23 @@
 import * as ActionTypes from './ActionTypes';
 import { baseUrl } from '../shared/baseUrl';
 
-export const addComment = (comment) => ({
-	type: ActionTypes.ADD_COMMENT,
-	payload: comment
+export const addContact = (contact) => ({
+	type: ActionTypes.ADD_CONTACT,
+	payload: contact
 });
 
-export const postComment = (dishId, rating, author, comment) => (dispatch) => {
-	const newComment = {
+export const postContact = (dishId, rating, author, contact) => (dispatch) => {
+	const newContact = {
 		dishId: dishId,
 		rating: rating,
 		author: author,
-		comment: comment
+		contact: contact
 	}
-	newComment.date = new Date().toISOString();
+	newContact.date = new Date().toISOString();
 
-	return fetch(baseUrl + 'comments', {
+	return fetch(baseUrl + 'contacts', {
 		method: 'POST',
-		body: JSON.stringify(newComment),
+		body: JSON.stringify(newContact),
 		headers: {
 			'Content-Type': 'application/json'
 		},
@@ -38,13 +38,13 @@ export const postComment = (dishId, rating, author, comment) => (dispatch) => {
 			throw errmess;
 		})
 		.then(response => response.json())
-		.then(response => dispatch(addComment(response)))
-		.catch(error => { console.log('Post comments ', error.message);
-			alert('Your comment could not be posted\nError: ' + error.message);});
+		.then(response => dispatch(addContact(response)))
+		.catch(error => { console.log('Post contacts ', error.message);
+			alert('Your contact could not be posted\nError: ' + error.message);});
 };
 
-export const fetchComments = () => (dispatch) => {
-	return fetch(baseUrl + 'comments')
+export const fetchContacts = () => (dispatch) => {
+	return fetch(baseUrl + 'contacts')
 		.then(response => {
 			if (response.ok) {
 				return response;
@@ -60,16 +60,16 @@ export const fetchComments = () => (dispatch) => {
 			throw errmess;
 		})
 		.then(response => response.json())
-		.then(comments => dispatch(addComments(comments)))
-		.catch(error => dispatch(commentsFailed(error.message)));
+		.then(contacts => dispatch(addContacts(contacts)))
+		.catch(error => dispatch(contactsFailed(error.message)));
 }
 
-export const commentsFailed = (errmess) => ({
-	type: ActionTypes.COMMENTS_FAILED,
+export const contactsFailed = (errmess) => ({
+	type: ActionTypes.CONTACTS_FAILED,
 	payload: errmess
 });
 
-export const addComments = (comments) => ({
-	type: ActionTypes.ADD_COMMENTS,
-	payload: comments
+export const addContacts = (contacts) => ({
+	type: ActionTypes.ADD_CONTACTS,
+	payload: contacts
 });
