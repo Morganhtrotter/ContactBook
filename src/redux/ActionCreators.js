@@ -6,6 +6,30 @@ export const addContact = (contact) => ({
 	payload: contact
 });
 
+
+export const deleteContact = (id) => (dispatch) => {
+	return fetch(baseUrl + 'contacts/' + id, {
+		method: 'DELETE'
+	}).then(response => {
+			if (response.ok) {
+				return response;
+			}
+			else {
+				var error = new Error('Error ' + response.status + ': ' + response.statusText);
+				error.response = response;
+				throw error;
+			}
+		},
+		error => {
+			var errmess = new Error(error.message);
+			throw errmess;
+		})
+		.then(response => response.json())
+		.catch(error => { console.log('Post contacts ', error.message);
+			alert('Your contact could not be posted\nError: ' + error.message);});
+};
+
+
 export const postContact = (id, name, phone, address) => (dispatch) => {
 	const newContact = {
 		id: id,
@@ -13,7 +37,6 @@ export const postContact = (id, name, phone, address) => (dispatch) => {
 		phone: phone,
 		address: address
 	}
-	newContact.date = new Date().toISOString();
 
 	return fetch(baseUrl + 'contacts', {
 		method: 'POST',

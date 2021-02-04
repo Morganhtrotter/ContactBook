@@ -7,10 +7,13 @@ class Home extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			isModalOpen: false
+			isModalOpen: false,
+			deleted: false
 		}
 		this.toggleModal = this.toggleModal.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
+		this.handleDelete = this.handleDelete.bind(this);
+		this.updatePage = this.updatePage.bind(this);
 	}
 
 	toggleModal() {
@@ -21,7 +24,24 @@ class Home extends Component {
 
 	handleSubmit(values) {
 		this.toggleModal();
-		this.props.postContact(this.props.contacts.length, values.yourname, values.phone, values.address);
+		this.props.postContact(this.props.contacts.length + 1, values.yourname, values.phone, values.address);
+	}
+
+	
+	handleDelete(id) {
+		this.props.deleteContact(id);
+		console.log("here");
+		this.setState({
+			deleted: !this.state.deleted
+		});
+		this.forceUpdate();
+		console.log("here2");
+	}
+
+	updatePage(id) {
+		this.setState({
+			deleted: !this.state.deleted
+		});
 	}
 	
 	render() {
@@ -30,21 +50,24 @@ class Home extends Component {
 				<div>
 					{this.props.contacts.map((contact) => {
 						return(
-							<div>
+							<div key={contact.id}>
 								<p>{contact.name}</p>
 								<p>{contact.phone}</p>
 								<p>{contact.address}</p>
+								<Button>Edit</Button>
+								<Button onClick={() => this.handleDelete(contact.id)}>Delete</Button>
 							</div>
 						);
 					})}
 					<div>
 						<Button onClick={this.toggleModal}>Add Contact</Button>
+						<Button onClick={() => this.forceUpdate()}>Update</Button>
 						<Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
 							<ModalHeader toggle={this.toggleModal}>Add Contact</ModalHeader>
 							<ModalBody>
 								<LocalForm onSubmit={(values) => this.handleSubmit(values)}>
 									<Row className="form-group">
-										<Label htmlfor="yourname" md={10}>Contact Name</Label>
+										<Label htmlFor="yourname" md={10}>Contact Name</Label>
 									</Row>
 									<Row className="form-group">
 										<Col>
@@ -54,7 +77,7 @@ class Home extends Component {
 										</Col>
 									</Row>
 									<Row className="form-group">
-										<Label htmlfor="phone" md={10}>Phone</Label>
+										<Label htmlFor="phone" md={10}>Phone</Label>
 									</Row>
 									<Row className="form-group">
 										<Col>
@@ -64,7 +87,7 @@ class Home extends Component {
 										</Col>
 									</Row>
 									<Row className="form-group">
-										<Label htmlfor="address" md={10}>Address</Label>
+										<Label htmlFor="address" md={10}>Address</Label>
 									</Row>
 									<Row className="form-group">
 										<Col>

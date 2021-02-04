@@ -4,8 +4,7 @@ import Header from './HeaderComponent';
 import Footer from './FooterComponent';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { postContact, fetchContacts } from '../redux/ActionCreators';
-import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import { postContact, fetchContacts, deleteContact } from '../redux/ActionCreators';
 
 const mapStateToProps = state => {
 	return {
@@ -16,6 +15,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = (dispatch) => ({
 	postContact: (id, name, phone, address) => dispatch(postContact(id, name, phone, address)),
 	fetchContacts: () => {dispatch(fetchContacts())},
+	deleteContact: (id) => (dispatch(deleteContact(id)))
 });
 
 class Main extends Component {
@@ -31,24 +31,20 @@ class Main extends Component {
 
 		const HomePage = () => {
 			return(
-				<Home contacts={this.props.contacts.contacts} postContact={this.props.postContact} />
+				<Home contacts={this.props.contacts.contacts} postContact={this.props.postContact} deleteContact={this.props.deleteContact}/>
 			);
 		}
 
 		return (
-	    <div>
-	    	<Header />
-	    		<TransitionGroup>
-	    			<CSSTransition key={this.props.location.key} classNames="page" timeout={300}>
-				    	<Switch>
-				    		<Route path="/home" component={HomePage} />
-				    		<Redirect to="/home" />
-				    	</Switch>
-				    </CSSTransition>
-		    	</TransitionGroup>
-	      <Footer />
-	    </div>
-  	);
+		    <div>
+		    	<Header />
+			    	<Switch>
+			    		<Route path="/home" component={HomePage} />
+			    		<Redirect to="/home" />
+			    	</Switch>
+		      <Footer />
+		    </div>
+	  	);
 	}
 }
 
