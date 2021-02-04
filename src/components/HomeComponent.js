@@ -13,7 +13,6 @@ class Home extends Component {
 		this.toggleModal = this.toggleModal.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleDelete = this.handleDelete.bind(this);
-		this.updatePage = this.updatePage.bind(this);
 	}
 
 	toggleModal() {
@@ -31,11 +30,11 @@ class Home extends Component {
 	handleDelete(id) {
 		this.props.deleteContact(id);
 		console.log("here");
-		this.setState({
+		/*this.setState({
 			deleted: !this.state.deleted
-		});
-		this.forceUpdate();
-		console.log("here2");
+		});*/
+		window.location.reload(true);
+		//this.forceUpdate();
 	}
 
 	updatePage(id) {
@@ -61,7 +60,6 @@ class Home extends Component {
 					})}
 					<div>
 						<Button onClick={this.toggleModal}>Add Contact</Button>
-						<Button onClick={() => this.forceUpdate()}>Update</Button>
 						<Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
 							<ModalHeader toggle={this.toggleModal}>Add Contact</ModalHeader>
 							<ModalBody>

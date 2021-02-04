@@ -9,8 +9,12 @@ export const addContact = (contact) => ({
 
 export const deleteContact = (id) => (dispatch) => {
 	return fetch(baseUrl + 'contacts/' + id, {
-		method: 'DELETE'
-	}).then(response => {
+		method: 'DELETE',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		credentials: 'same-origin'
+	})/*.then(response => {
 			if (response.ok) {
 				return response;
 			}
@@ -25,8 +29,8 @@ export const deleteContact = (id) => (dispatch) => {
 			throw errmess;
 		})
 		.then(response => response.json())
-		.catch(error => { console.log('Post contacts ', error.message);
-			alert('Your contact could not be posted\nError: ' + error.message);});
+		.catch(error => { console.log('Delete contacts ', error.message);
+			alert('Your contact could not be deleted\nError: ' + error.message);});*/
 };
 
 
