@@ -14,7 +14,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-	postContact: (dishId, rating, author, contact) => dispatch(postContact(dishId, rating, author, contact)),
+	postContact: (id, name, phone, address) => dispatch(postContact(id, name, phone, address)),
 	fetchContacts: () => {dispatch(fetchContacts())},
 });
 
@@ -31,7 +31,7 @@ class Main extends Component {
 
 		const HomePage = () => {
 			return(
-				<Home contacts={this.props.contacts.contacts} />
+				<Home contacts={this.props.contacts.contacts} postContact={this.props.postContact} />
 			);
 		}
 

@@ -6,12 +6,12 @@ export const addContact = (contact) => ({
 	payload: contact
 });
 
-export const postContact = (dishId, rating, author, contact) => (dispatch) => {
+export const postContact = (id, name, phone, address) => (dispatch) => {
 	const newContact = {
-		dishId: dishId,
-		rating: rating,
-		author: author,
-		contact: contact
+		id: id,
+		name: name,
+		phone: phone,
+		address: address
 	}
 	newContact.date = new Date().toISOString();
 
