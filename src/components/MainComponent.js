@@ -4,7 +4,7 @@ import Header from './HeaderComponent';
 import Footer from './FooterComponent';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { postContact, fetchContacts, deleteContact } from '../redux/ActionCreators';
+import { postContact, fetchContacts, deleteContact, putContact } from '../redux/ActionCreators';
 
 const mapStateToProps = state => {
 	return {
@@ -14,6 +14,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch) => ({
 	postContact: (id, name, phone, address) => dispatch(postContact(id, name, phone, address)),
+	putContact: (id, name, phone, address) => dispatch(putContact(id, name, phone, address)),
 	fetchContacts: () => {dispatch(fetchContacts())},
 	deleteContact: (id) => (dispatch(deleteContact(id)))
 });
@@ -31,7 +32,9 @@ class Main extends Component {
 
 		const HomePage = () => {
 			return(
-				<Home contacts={this.props.contacts.contacts} postContact={this.props.postContact} deleteContact={this.props.deleteContact}/>
+				<Home contacts={this.props.contacts.contacts} postContact={this.props.postContact}
+						deleteContact={this.props.deleteContact}
+						putContact={this.props.putContact}/>
 			);
 		}
 

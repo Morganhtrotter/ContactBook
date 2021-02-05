@@ -8,16 +8,28 @@ class Home extends Component {
 		super(props);
 		this.state = {
 			isModalOpen: false,
+			isEditModalOpen: false,
+			editID: 0,
 			deleted: false
-		}
+		};
 		this.toggleModal = this.toggleModal.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleDelete = this.handleDelete.bind(this);
+		this.toggleEditModal = this.toggleEditModal.bind(this);
+		this.handlePut = this.handlePut.bind(this);
 	}
 
 	toggleModal() {
 		this.setState({
 			isModalOpen: !this.state.isModalOpen
+		});
+	}
+
+	toggleEditModal(id) {
+		console.log("intoggleEdit: " + id);
+		this.setState({
+			isEditModalOpen: !this.state.isEditModalOpen,
+			editID: id
 		});
 	}
 
@@ -52,6 +64,12 @@ class Home extends Component {
 		window.location.reload(true);
 		//this.forceUpdate();
 	}
+
+	handlePut(values) {
+		this.toggleEditModal();
+		console.log("in handle put" + this.state.editID);
+		this.props.putContact(this.state.editID, values.yourname, values.phone, values.address);
+	}
 	
 	render() {
 		return(
@@ -63,7 +81,51 @@ class Home extends Component {
 								<p>{contact.name}</p>
 								<p>{contact.phone}</p>
 								<p>{contact.address}</p>
-								<Button>Edit</Button>
+								<Button onClick={() => this.toggleEditModal(contact.id)}>Edit</Button>
+								<Modal isOpen={this.state.isEditModalOpen} toggle={this.toggleEditModal}>
+									<ModalHeader toggle={this.toggleEditModal}>Edit Contact</ModalHeader>
+									<ModalBody>
+										<LocalForm onSubmit={(values) => this.handlePut(values)}>
+											<Row className="form-group">
+												<Label htmlFor="yourname" md={10}>Contact Name</Label>
+											</Row>
+											<Row className="form-group">
+												<Col>
+													<Control.text model=".yourname" id="yourname" name="yourname"
+															placeholder="John Doe"
+															className="form-control" />
+												</Col>
+											</Row>
+											<Row className="form-group">
+												<Label htmlFor="phone" md={10}>Phone</Label>
+											</Row>
+											<Row className="form-group">
+												<Col>
+													<Control.text model=".phone" id="phone" name="phone"
+															placeholder="888-888-8888"
+															className="form-control" />
+												</Col>
+											</Row>
+											<Row className="form-group">
+												<Label htmlFor="address" md={10}>Address</Label>
+											</Row>
+											<Row className="form-group">
+												<Col>
+													<Control.text model=".address" id="address" name="address"
+															placeholder="1 Main St."
+															className="form-control" />
+												</Col>
+											</Row>
+											<Row>
+												<Col>
+													<Button type="submit" color="primary">
+														Submit
+													</Button>
+												</Col>
+											</Row>
+										</LocalForm>
+									</ModalBody>
+								</Modal>
 								<Button onClick={() => this.handleDelete(contact.id)}>Delete</Button>
 							</div>
 						);
