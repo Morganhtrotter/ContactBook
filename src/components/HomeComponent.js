@@ -23,7 +23,23 @@ class Home extends Component {
 
 	handleSubmit(values) {
 		this.toggleModal();
-		this.props.postContact(this.props.contacts.length + 1, values.yourname, values.phone, values.address);
+		var idPosted = 0;
+		var posted = false;
+		var idArray = [];
+		for (var i = 0; i < this.props.contacts.length; i++) {
+			idArray.push(this.props.contacts[i].id);
+		}
+		idArray.sort(function(a, b){return a-b});
+		for (var i = 0; i < this.props.contacts.length; i++) {
+			if (i + 1 != idArray[i]) {
+				idPosted = i + 1;
+				posted = true;
+			}
+		}
+		if (posted == false) {
+			idPosted = this.props.contacts.length + 1;
+		}
+		this.props.postContact(idPosted, values.yourname, values.phone, values.address);
 	}
 
 	
@@ -35,12 +51,6 @@ class Home extends Component {
 		});*/
 		window.location.reload(true);
 		//this.forceUpdate();
-	}
-
-	updatePage(id) {
-		this.setState({
-			deleted: !this.state.deleted
-		});
 	}
 	
 	render() {
