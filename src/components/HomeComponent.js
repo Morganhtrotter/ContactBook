@@ -79,11 +79,11 @@ class Home extends Component {
 					numberInList++;
 					return(
 						<div className="contactDiv" key={contact.id}>
-							<p>{numberInList}</p>
-							<p><span>Name:</span> {contact.name}</p>
-							<p><span>Phone:</span> {contact.phone}</p>
-							<p><span>Address:</span> {contact.address}</p>
-							<Button outline color="warning" className="editButton" onClick={() => this.toggleEditModal(contact.id)}>Edit</Button>
+							<p className="numberInList">{numberInList}</p>
+							<p className="contactText"><span className="generalText">Name:</span><span className="contactName"> {contact.name}</span></p>
+							<p className="contactText"><span className="generalText">Phone:</span> {contact.phone}</p>
+							<p className="contactText"><span className="generalText">Address:</span> {contact.address}</p>
+							<Button outline color="primary" className="editButton" onClick={() => this.toggleEditModal(contact.id)}>Edit</Button>
 							<Modal isOpen={this.state.isEditModalOpen} toggle={this.toggleEditModal}>
 								<ModalHeader toggle={this.toggleEditModal}>Edit Contact</ModalHeader>
 								<ModalBody>
@@ -128,12 +128,12 @@ class Home extends Component {
 									</LocalForm>
 								</ModalBody>
 							</Modal>
-							<Button outline color="danger" onClick={() => this.handleDelete(contact.id)}>Delete</Button>
+							<Button outline color="danger" className="deleteButton" onClick={() => this.handleDelete(contact.id)}>Delete</Button>
 						</div>
 					);
 				})}
 				<div>
-					<Button outline color="primary" id="addButton" onClick={this.toggleModal}>Add Contact</Button>
+					<Button color="primary" id="addButton" onClick={this.toggleModal}>Add Contact</Button>
 					<Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
 						<ModalHeader toggle={this.toggleModal}>Add Contact</ModalHeader>
 						<ModalBody>
