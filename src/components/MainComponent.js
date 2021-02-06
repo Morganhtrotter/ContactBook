@@ -39,13 +39,13 @@ class Main extends Component {
 		}
 
 		return (
-		    <div>
+		    <div id="mainBackground">
 		    	<Header />
 			    	<Switch>
 			    		<Route path="/home" component={HomePage} />
 			    		<Redirect to="/home" />
 			    	</Switch>
-		      <Footer />
+		      	<Footer />
 		    </div>
 	  	);
 	}

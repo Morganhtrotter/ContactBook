@@ -72,111 +72,112 @@ class Home extends Component {
 	}
 	
 	render() {
+		var numberInList = 0;
 		return(
-			<div className="container">
+			<div className="container" id="homeBackground">
+				{this.props.contacts.map((contact) => {
+					numberInList++;
+					return(
+						<div className="contactDiv" key={contact.id}>
+							<p>{numberInList}</p>
+							<p><span>Name:</span> {contact.name}</p>
+							<p><span>Phone:</span> {contact.phone}</p>
+							<p><span>Address:</span> {contact.address}</p>
+							<Button outline color="warning" className="editButton" onClick={() => this.toggleEditModal(contact.id)}>Edit</Button>
+							<Modal isOpen={this.state.isEditModalOpen} toggle={this.toggleEditModal}>
+								<ModalHeader toggle={this.toggleEditModal}>Edit Contact</ModalHeader>
+								<ModalBody>
+									<LocalForm onSubmit={(values) => this.handlePut(values)}>
+										<Row className="form-group">
+											<Label htmlFor="yourname" md={10}>Contact Name</Label>
+										</Row>
+										<Row className="form-group">
+											<Col>
+												<Control.text model=".yourname" id="yourname" name="yourname"
+														placeholder="John Doe"
+														className="form-control" />
+											</Col>
+										</Row>
+										<Row className="form-group">
+											<Label htmlFor="phone" md={10}>Phone</Label>
+										</Row>
+										<Row className="form-group">
+											<Col>
+												<Control.text model=".phone" id="phone" name="phone"
+														placeholder="888-888-8888"
+														className="form-control" />
+											</Col>
+										</Row>
+										<Row className="form-group">
+											<Label htmlFor="address" md={10}>Address</Label>
+										</Row>
+										<Row className="form-group">
+											<Col>
+												<Control.text model=".address" id="address" name="address"
+														placeholder="1 Main St."
+														className="form-control" />
+											</Col>
+										</Row>
+										<Row>
+											<Col>
+												<Button type="submit" color="primary">
+													Submit
+												</Button>
+											</Col>
+										</Row>
+									</LocalForm>
+								</ModalBody>
+							</Modal>
+							<Button outline color="danger" onClick={() => this.handleDelete(contact.id)}>Delete</Button>
+						</div>
+					);
+				})}
 				<div>
-					{this.props.contacts.map((contact) => {
-						return(
-							<div key={contact.id}>
-								<p>{contact.name}</p>
-								<p>{contact.phone}</p>
-								<p>{contact.address}</p>
-								<Button onClick={() => this.toggleEditModal(contact.id)}>Edit</Button>
-								<Modal isOpen={this.state.isEditModalOpen} toggle={this.toggleEditModal}>
-									<ModalHeader toggle={this.toggleEditModal}>Edit Contact</ModalHeader>
-									<ModalBody>
-										<LocalForm onSubmit={(values) => this.handlePut(values)}>
-											<Row className="form-group">
-												<Label htmlFor="yourname" md={10}>Contact Name</Label>
-											</Row>
-											<Row className="form-group">
-												<Col>
-													<Control.text model=".yourname" id="yourname" name="yourname"
-															placeholder="John Doe"
-															className="form-control" />
-												</Col>
-											</Row>
-											<Row className="form-group">
-												<Label htmlFor="phone" md={10}>Phone</Label>
-											</Row>
-											<Row className="form-group">
-												<Col>
-													<Control.text model=".phone" id="phone" name="phone"
-															placeholder="888-888-8888"
-															className="form-control" />
-												</Col>
-											</Row>
-											<Row className="form-group">
-												<Label htmlFor="address" md={10}>Address</Label>
-											</Row>
-											<Row className="form-group">
-												<Col>
-													<Control.text model=".address" id="address" name="address"
-															placeholder="1 Main St."
-															className="form-control" />
-												</Col>
-											</Row>
-											<Row>
-												<Col>
-													<Button type="submit" color="primary">
-														Submit
-													</Button>
-												</Col>
-											</Row>
-										</LocalForm>
-									</ModalBody>
-								</Modal>
-								<Button onClick={() => this.handleDelete(contact.id)}>Delete</Button>
-							</div>
-						);
-					})}
-					<div>
-						<Button onClick={this.toggleModal}>Add Contact</Button>
-						<Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
-							<ModalHeader toggle={this.toggleModal}>Add Contact</ModalHeader>
-							<ModalBody>
-								<LocalForm onSubmit={(values) => this.handleSubmit(values)}>
-									<Row className="form-group">
-										<Label htmlFor="yourname" md={10}>Contact Name</Label>
-									</Row>
-									<Row className="form-group">
-										<Col>
-											<Control.text model=".yourname" id="yourname" name="yourname"
-													placeholder="John Doe"
-													className="form-control" />
-										</Col>
-									</Row>
-									<Row className="form-group">
-										<Label htmlFor="phone" md={10}>Phone</Label>
-									</Row>
-									<Row className="form-group">
-										<Col>
-											<Control.text model=".phone" id="phone" name="phone"
-													placeholder="888-888-8888"
-													className="form-control" />
-										</Col>
-									</Row>
-									<Row className="form-group">
-										<Label htmlFor="address" md={10}>Address</Label>
-									</Row>
-									<Row className="form-group">
-										<Col>
-											<Control.text model=".address" id="address" name="address"
-													placeholder="1 Main St."
-													className="form-control" />
-										</Col>
-									</Row>
-									<Row>
-										<Col>
-											<Button type="submit" color="primary">
-												Submit
-											</Button>
-										</Col>
-									</Row>
-								</LocalForm>
-							</ModalBody>
-						</Modal>
-					</div>
+					<Button outline color="primary" id="addButton" onClick={this.toggleModal}>Add Contact</Button>
+					<Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
+						<ModalHeader toggle={this.toggleModal}>Add Contact</ModalHeader>
+						<ModalBody>
+							<LocalForm onSubmit={(values) => this.handleSubmit(values)}>
+								<Row className="form-group">
+									<Label htmlFor="yourname" md={10}>Contact Name</Label>
+								</Row>
+								<Row className="form-group">
+									<Col>
+										<Control.text model=".yourname" id="yourname" name="yourname"
+												placeholder="John Doe"
+												className="form-control" />
+									</Col>
+								</Row>
+								<Row className="form-group">
+									<Label htmlFor="phone" md={10}>Phone</Label>
+								</Row>
+								<Row className="form-group">
+									<Col>
+										<Control.text model=".phone" id="phone" name="phone"
+												placeholder="888-888-8888"
+												className="form-control" />
+									</Col>
+								</Row>
+								<Row className="form-group">
+									<Label htmlFor="address" md={10}>Address</Label>
+								</Row>
+								<Row className="form-group">
+									<Col>
+										<Control.text model=".address" id="address" name="address"
+												placeholder="1 Main St."
+												className="form-control" />
+									</Col>
+								</Row>
+								<Row>
+									<Col>
+										<Button type="submit" color="primary">
+											Submit
+										</Button>
+									</Col>
+								</Row>
+							</LocalForm>
+						</ModalBody>
+					</Modal>
 				</div>
 			</div>
 		);

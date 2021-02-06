@@ -1,3 +1,10 @@
+:root {
+    --primary: #495464;
+    --secondary: #BBBFCA;
+    --tertiary: #E8E8E8;
+    --gray: #F4F4F2;
+}
+
 .row-header{
     margin:0px auto;
     padding:0px auto;
@@ -11,34 +18,49 @@
 }
 
 .footer{
-    background-color: #D1C4E9;
+    background-color: var(--secondary);
     margin:0px auto;
     padding: 20px 0px 20px 0px;
 }
+
 .jumbotron {
     padding:70px 30px 70px 30px;
     margin:0px auto;
-    background: #9575CD ;
-    color:floralwhite;
+    background: var(--secondary) ;
+    color: floralwhite;
 }
 
-address{
-    font-size:80%;
-    margin:0px;
-    color:#0f0f0f;
+h1 {
+    font-family: 'Quicksand', sans-serif;
+    color: var(--primary);
 }
 
-.navbar-dark {
-    background-color: #512DA8;
+p, Button {
+    font-family: 'Roboto', sans-serif;
 }
 
-.page-enter {
-    opacity: 0.01;
-    transform: translateX(-100%);
+#mainBackground {
+    background-color: var(--gray);
 }
 
-.page-enter-active {
-    opacity: 1;
-    transform: translateX(0%);
-    transition: all 300ms ease-in;
+.contactDiv {
+    background-color: var(--primary);
+    padding: 20px;
+    margin: 15px;
+    border-radius: 4px;
+    display: inline-block;
+    color: white;
+}
+
+.editButton {
+    margin-right: 15px;
+}
+
+#addButton {
+    margin-left: 15px;
+    margin-bottom: 15px;
+}
+
+span {
+    color: var(--secondary);
 }
