@@ -1,10 +1,11 @@
 :root {
-    --primary: #495464;
+    --primary: #16697A;
     --secondary: #BBBFCA;
     --tertiary: #E8E8E8;
     --gray: #F4F4F2;
     --shadow: #A9A9A9;
-    --topAndBottom: #8599AD;
+    --topAndBottom: #212121;
+    --name: #DB6400;
 }
 
 .row-header{
@@ -23,20 +24,22 @@
     background-color: var(--topAndBottom);
     margin:0px auto;
     padding: 20px 0px 20px 0px;
+    box-shadow: 0px -5px 10px var(--shadow);
 }
 
 .jumbotron {
     padding:40px 30px 40px 30px;
     margin:0px auto;
-    background: var(--primary) ;
+    background-color: var(--topAndBottom) ;
     color: floralwhite;
-    box-shadow: 5px 5px 10px var(--topAndBottom);
+    box-shadow: 0px 5px 10px var(--shadow);
     border-radius: 0px;
 }
 
 h1 {
-    font-family: 'Quicksand', sans-serif;
-    color: var(--tertiary);
+    font-family: 'Nunito Sans', sans-serif;
+    color: white;
+    letter-spacing: 2px;
 }
 
 p, Button {
@@ -60,6 +63,13 @@ p, Button {
 .editButton {
     margin-right: 15px;
     margin-left: 20px;
+    color: var(--primary);
+    border-color: var(--primary);
+}
+
+.editButton:hover {
+    background-color: var(--primary);
+    border-color: var(--primary);
 }
 
 #addButton {
@@ -67,6 +77,8 @@ p, Button {
     margin-bottom: 15px;
     margin-top: 15px;
     box-shadow: 5px 5px 10px var(--shadow);
+    background-color: var(--primary);
+    border-color: var(--primary);
 }
 
 span {
@@ -94,7 +106,7 @@ span {
 
 .contactName {
     font-weight: bold;
-    color: var(--primary);
+    color: var(--name);
     letter-spacing: 1px;
 }
 
