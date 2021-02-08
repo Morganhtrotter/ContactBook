@@ -84,57 +84,58 @@ class Home extends Component {
 							<p className="contactText"><span className="generalText">Phone:</span> {contact.phone}</p>
 							<p className="contactText"><span className="generalText">Address:</span> {contact.address}</p>
 							<Button outline color="primary" className="editButton" onClick={() => this.toggleEditModal(contact.id)}>Edit</Button>
-							<Modal isOpen={this.state.isEditModalOpen} toggle={this.toggleEditModal}>
-								<ModalHeader toggle={this.toggleEditModal}>Edit Contact</ModalHeader>
-								<ModalBody>
-									<LocalForm onSubmit={(values) => this.handlePut(values)}>
-										<Row className="form-group">
-											<Label htmlFor="yourname" md={10}>Contact Name</Label>
-										</Row>
-										<Row className="form-group">
-											<Col>
-												<Control.text model=".yourname" id="yourname" name="yourname"
-														placeholder="John Doe"
-														className="form-control" />
-											</Col>
-										</Row>
-										<Row className="form-group">
-											<Label htmlFor="phone" md={10}>Phone</Label>
-										</Row>
-										<Row className="form-group">
-											<Col>
-												<Control.text model=".phone" id="phone" name="phone"
-														placeholder="888-888-8888"
-														className="form-control" />
-											</Col>
-										</Row>
-										<Row className="form-group">
-											<Label htmlFor="address" md={10}>Address</Label>
-										</Row>
-										<Row className="form-group">
-											<Col>
-												<Control.text model=".address" id="address" name="address"
-														placeholder="1 Main St."
-														className="form-control" />
-											</Col>
-										</Row>
-										<Row>
-											<Col>
-												<Button type="submit" color="primary">
-													Submit
-												</Button>
-											</Col>
-										</Row>
-									</LocalForm>
-								</ModalBody>
-							</Modal>
 							<Button outline color="danger" className="deleteButton" onClick={() => this.handleDelete(contact.id)}>Delete</Button>
 						</div>
 					);
 				})}
+				{numberInList === 0 && <p id="noContacts">No contacts yet. Press "Add Contact" to get started.</p>}
 				<div>
+					<Modal isOpen={this.state.isEditModalOpen} toggle={this.toggleEditModal}>
+						<ModalHeader toggle={this.toggleEditModal}>Edit Contact</ModalHeader>
+						<ModalBody>
+							<LocalForm onSubmit={(values) => this.handlePut(values)}>
+								<Row className="form-group">
+									<Label htmlFor="yourname" md={10}>Contact Name</Label>
+								</Row>
+								<Row className="form-group">
+									<Col>
+										<Control.text model=".yourname" id="yourname" name="yourname"
+												placeholder="John Doe"
+												className="form-control" />
+									</Col>
+								</Row>
+								<Row className="form-group">
+									<Label htmlFor="phone" md={10}>Phone</Label>
+								</Row>
+								<Row className="form-group">
+									<Col>
+										<Control.text model=".phone" id="phone" name="phone"
+												placeholder="888-888-8888"
+												className="form-control" />
+									</Col>
+								</Row>
+								<Row className="form-group">
+									<Label htmlFor="address" md={10}>Address</Label>
+								</Row>
+								<Row className="form-group">
+									<Col>
+										<Control.text model=".address" id="address" name="address"
+												placeholder="1 Main St."
+												className="form-control" />
+									</Col>
+								</Row>
+								<Row>
+									<Col>
+										<Button className="submitButton" type="submit" color="primary">
+											Submit
+										</Button>
+									</Col>
+								</Row>
+							</LocalForm>
+						</ModalBody>
+					</Modal>
 					<Button color="primary" id="addButton" onClick={this.toggleModal}>Add Contact</Button>
-					<Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
+					<Modal id="addModal" isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
 						<ModalHeader toggle={this.toggleModal}>Add Contact</ModalHeader>
 						<ModalBody>
 							<LocalForm onSubmit={(values) => this.handleSubmit(values)}>
@@ -170,7 +171,7 @@ class Home extends Component {
 								</Row>
 								<Row>
 									<Col>
-										<Button type="submit" color="primary">
+										<Button className="submitButton" type="submit" color="primary">
 											Submit
 										</Button>
 									</Col>

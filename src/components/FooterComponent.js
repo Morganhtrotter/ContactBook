@@ -6,7 +6,7 @@ function Footer(props) {
 		<div className="footer">
         <div className="container">
             <div className="row justify-content-center">
-                <p>Select Theme</p>
+                <p></p>
             </div>
         </div>
     </div>
