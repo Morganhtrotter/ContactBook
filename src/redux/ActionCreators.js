@@ -48,7 +48,7 @@ export const putContact = (id, name, phone, address) => (dispatch) => {
 			'Content-Type': 'application/json'
 		},
 		credentials: 'same-origin'
-	})
+	});/*
 		.then(response => {
 			if (response.ok) {
 				return response;
@@ -66,7 +66,7 @@ export const putContact = (id, name, phone, address) => (dispatch) => {
 		.then(response => response.json())
 		//.then(response => dispatch(addContact(response)))
 		.catch(error => { console.log('Put contact ', error.message);
-			alert('Your contact could not be edited\nError: ' + error.message);});
+			alert('Your contact could not be edited\nError: ' + error.message);});*/
 };
 
 export const postContact = (id, name, phone, address) => (dispatch) => {

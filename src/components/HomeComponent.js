@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Button, Row, Col, Modal, ModalHeader, ModalBody, Label } from 'reactstrap';
-import { LocalForm, Control } from 'react-redux-form';
+import { LocalForm, Control, Errors } from 'react-redux-form';
 
+const required = (val) => val && val.length;
 
 class Home extends Component {
 	constructor(props) {
@@ -26,7 +27,6 @@ class Home extends Component {
 	}
 
 	toggleEditModal(id) {
-		console.log("intoggleEdit: " + id);
 		this.setState({
 			isEditModalOpen: !this.state.isEditModalOpen,
 			editID: id
@@ -43,11 +43,13 @@ class Home extends Component {
 		}
 		idArray.sort(function(a, b){return a-b});
 		for (var i = 0; i < this.props.contacts.length; i++) {
+			// Find the first instance of an absent id in database
 			if (i + 1 != idArray[i]) {
 				idPosted = i + 1;
 				posted = true;
 			}
 		}
+		// If didnt find any absent id's, add unique id
 		if (posted == false) {
 			idPosted = this.props.contacts.length + 1;
 		}
@@ -67,16 +69,16 @@ class Home extends Component {
 
 	handlePut(values) {
 		this.toggleEditModal();
-		console.log("in handle put" + this.state.editID);
 		this.props.putContact(this.state.editID, values.yourname, values.phone, values.address);
+		window.location.reload(true);
 	}
 	
 	render() {
 		var numberInList = 0;
 		return(
 			<div className="container" id="homeBackground">
-				{this.props.contacts.map((contact) => {
-					numberInList++;
+				{this.props.contacts.map((contact) => { // Get all contacts in db
+					numberInList++; // Count number of contacts
 					return(
 						<div className="contactDiv" key={contact.id}>
 							<p className="numberInList">{numberInList.toLocaleString('en-US', {
@@ -91,8 +93,9 @@ class Home extends Component {
 						</div>
 					);
 				})}
-				{numberInList === 0 && <p id="noContacts">No contacts yet. Press "Add Contact" to get started.</p>}
+				{numberInList === 0 && <p id="noContacts">No contacts yet. Press "Add Contact" to get started.</p>} 
 				<div>
+					{/* Form to edit a contact already in db */}
 					<Modal isOpen={this.state.isEditModalOpen} toggle={this.toggleEditModal}>
 						<ModalHeader toggle={this.toggleEditModal}>Edit Contact</ModalHeader>
 						<ModalBody>
@@ -104,7 +107,15 @@ class Home extends Component {
 									<Col>
 										<Control.text model=".yourname" id="yourname" name="yourname"
 												placeholder="John Doe"
-												className="form-control" />
+												className="form-control"
+												validators={{required}} />
+										<Errors className="text-danger"
+												model=".yourname"
+												show="touched"
+												id="errorText"
+												messages={{
+													required: 'Required'
+												}}/>
 									</Col>
 								</Row>
 								<Row className="form-group">
@@ -138,6 +149,7 @@ class Home extends Component {
 						</ModalBody>
 					</Modal>
 					<Button color="primary" id="addButton" onClick={this.toggleModal}>Add Contact</Button>
+					{/* Form to add a contact to db */}
 					<Modal id="addModal" isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
 						<ModalHeader toggle={this.toggleModal}>Add Contact</ModalHeader>
 						<ModalBody>
@@ -149,7 +161,15 @@ class Home extends Component {
 									<Col>
 										<Control.text model=".yourname" id="yourname" name="yourname"
 												placeholder="John Doe"
-												className="form-control" />
+												className="form-control"
+												validators={{required}} />
+										<Errors className="text-danger"
+												model=".yourname"
+												show="touched"
+												id="errorText"
+												messages={{
+													required: 'Required'
+												}}/>
 									</Col>
 								</Row>
 								<Row className="form-group">
@@ -159,7 +179,7 @@ class Home extends Component {
 									<Col>
 										<Control.text model=".phone" id="phone" name="phone"
 												placeholder="888-888-8888"
-												className="form-control" />
+												className="form-control"/>
 									</Col>
 								</Row>
 								<Row className="form-group">
