@@ -79,7 +79,10 @@ class Home extends Component {
 					numberInList++;
 					return(
 						<div className="contactDiv" key={contact.id}>
-							<p className="numberInList">{numberInList}</p>
+							<p className="numberInList">{numberInList.toLocaleString('en-US', {
+								minimumIntegerDigits: 2,
+								useGrouping: false
+							})}</p>
 							<p className="contactText"><span className="generalText">Name:</span><span className="contactName"> {contact.name}</span></p>
 							<p className="contactText"><span className="generalText">Phone:</span> {contact.phone}</p>
 							<p className="contactText"><span className="generalText">Address:</span> {contact.address}</p>
