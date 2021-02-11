@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Home from './HomeComponent';
 import Header from './HeaderComponent';
-import Footer from './FooterComponent';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { postContact, fetchContacts, deleteContact, putContact } from '../redux/ActionCreators';
@@ -45,7 +44,6 @@ class Main extends Component {
 			    		<Route path="/home" component={HomePage} />
 			    		<Redirect to="/home" />
 			    	</Switch>
-		      	<Footer />
 		    </div>
 	  	);
 	}

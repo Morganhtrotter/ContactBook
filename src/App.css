@@ -47,7 +47,13 @@ p, Button {
 }
 
 #mainBackground {
-    background-color: var(--gray);
+    background-image: url(http://localhost:3001/assets/images/DialPhones.png);
+    background-attachment: fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    min-height: 100vh;
 }
 
 .contactDiv {
@@ -116,7 +122,6 @@ span {
 
 #homeBackground {
     margin-top: 15px;
-    margin-bottom: 15px;
 }
 
 .modal-header {
@@ -154,3 +159,18 @@ span {
 #errorText {
     margin-top: 10px;
 }
+
+#headerText, img {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#headerText {
+    margin-right: 30px;
+}
+
+img {
+    width: 30px;
+    margin-bottom: 5px;
+}
+
