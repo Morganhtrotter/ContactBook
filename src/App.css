@@ -36,7 +36,7 @@
     border-radius: 0px;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 576px) {
     .jumbotron {
         padding-left: 0px;
         padding-right: 0px;
@@ -180,4 +180,14 @@ img {
     width: 30px;
     margin-bottom: 5px;
     margin-right: 20px;
+}
+
+@media only screen and (max-width: 367px) {
+    img {
+        visibility: hidden;
+    }
+
+    #headerText {
+        margin-left: 45px;
+    }
 }
