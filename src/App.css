@@ -63,6 +63,10 @@ p, Button {
     min-height: 100vh;
 }
 
+#homeBackground {
+    padding-left: 65px;
+}
+
 .contactDiv {
     background-color: white;
     margin: 15px;
@@ -168,16 +172,12 @@ span {
 }
 
 #headerText, img {
-    display: inline-block;
     vertical-align: middle;
-}
-
-#headerText {
-    margin-right: 30px;
+    display: inline-block;
 }
 
 img {
     width: 30px;
     margin-bottom: 5px;
+    margin-right: 20px;
 }
-

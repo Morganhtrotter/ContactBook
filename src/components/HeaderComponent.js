@@ -11,8 +11,8 @@ class Header extends Component {
 		      	<div className="container">
 		      		<div className="row row-header">
 		      			<div className="col-12 col-sm-6" id="headerDiv">
-		      				<h1 id="headerText">Contact Book</h1>
 		      				<img src={baseUrl + '/assets/images/Icon.png'} className="img-fluid" alt="ImageNotFound" />
+		      				<h1 id="headerText">Contact Book</h1>
 		      			</div>
 		      		</div>
 		      	</div>
