@@ -42,11 +42,13 @@ class Home extends Component {
 			idArray.push(this.props.contacts[i].id);
 		}
 		idArray.sort(function(a, b){return a-b});
+		// Find the first instance of an absent id in database
+		console.log(idArray);
 		for (var i = 0; i < this.props.contacts.length; i++) {
-			// Find the first instance of an absent id in database
 			if (i + 1 != idArray[i]) {
 				idPosted = i + 1;
 				posted = true;
+				break;
 			}
 		}
 		// If didnt find any absent id's, add unique id
@@ -75,9 +77,29 @@ class Home extends Component {
 	
 	render() {
 		var numberInList = 0;
+		var contactArray = [];
+		const swap = (array, i, j) => {
+			var temp = array[i];
+			array[i] = array[j];
+			array[j] = temp;
+		};
+		const bubbleSort = (array) => {
+			for (var i = 0; i < array.length; i++) {
+				for (var j = 1; j < array.length; j++) {
+					if (array[j - 1].name > array[j].name) {
+						swap(array, j - 1, j);
+					}
+				}
+			}
+			return array;
+		};
+		this.props.contacts.map((contact) => {
+			contactArray.push(contact);
+		});
+		bubbleSort(contactArray);
 		return(
 			<div className="container" id="homeBackground">
-				{this.props.contacts.map((contact) => { // Get all contacts in db
+				{contactArray.map((contact) => {
 					numberInList++; // Count number of contacts
 					return(
 						<div className="contactDiv" key={contact.id}>
