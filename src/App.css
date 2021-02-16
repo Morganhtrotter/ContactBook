@@ -77,6 +77,14 @@ p, Button {
     min-width: 230px;
 }
 
+.contactDiv:hover {
+    background-color: #F2F2F0;
+}
+
+.contactDiv:hover .numberInList {
+    background-color: var(--topAndBottom);
+}
+
 .editButton {
     margin-right: 15px;
     margin-left: 20px;
