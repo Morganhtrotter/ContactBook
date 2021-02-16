@@ -54,7 +54,7 @@ p, Button {
 }
 
 #mainBackground {
-    background-image: url(http://localhost:3001/assets/images/DialPhones.png);
+    background-image: url(https://online-contact-book.herokuapp.com/assets/images/DialPhones.png);
     background-attachment: fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
