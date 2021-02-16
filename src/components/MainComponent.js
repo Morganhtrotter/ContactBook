@@ -31,7 +31,7 @@ class Main extends Component {
 
 		const HomePage = () => {
 			return(
-				<Home contacts={this.props.contacts.contacts} postContact={this.props.postContact}
+				<Home contacts={this.props.contacts.contacts}
 						deleteContact={this.props.deleteContact}
 						putContact={this.props.putContact}/>
 			);
@@ -39,11 +39,13 @@ class Main extends Component {
 
 		return (
 		    <div id="mainBackground">
-		    	<Header />
+		    	<div id="mainTint">
+		    		<Header contacts={this.props.contacts.contacts} postContact={this.props.postContact} />
 			    	<Switch>
 			    		<Route path="/home" component={HomePage} />
 			    		<Redirect to="/home" />
 			    	</Switch>
+			    </div>
 		    </div>
 	  	);
 	}

@@ -1,11 +1,11 @@
 :root {
-    --primary: #16697A;
-    --secondary: #BBBFCA;
-    --tertiary: #E8E8E8;
-    --gray: #F4F4F2;
+    --primary: #10375c; /* #16697A 2994b2 */
+    --secondary: #BBBFCA; /* #BBBFCA */
+    --tertiary: #f4f6ff; /* #E8E8E8 */
+    --gray: #F4F4F2; /* #F2F2F2 */
     --shadow: #A9A9A9;
-    --topAndBottom: #212121;
-    --name: #DB6400;
+    --topAndBottom: #f3c623; /* #212121 ffb400 */
+    --name: #127681; /* #DB6400 474744 */
 }
 
 .row-header{
@@ -63,12 +63,16 @@ p, Button {
     min-height: 100vh;
 }
 
+#mainTint {
+    background-color: rgba(16, 55, 92, 0.1);
+}
+
 #homeBackground {
     padding-left: 65px;
 }
 
 .contactDiv {
-    background-color: white;
+    background-color: var(--tertiary);
     margin: 15px;
     border-radius: 4px;
     display: inline-block;
@@ -90,12 +94,16 @@ p, Button {
 }
 
 #addButton {
-    margin-left: 15px;
+    margin-right: 25px;
     margin-bottom: 15px;
-    margin-top: 15px;
-    box-shadow: 5px 5px 10px var(--shadow);
-    background-color: var(--primary);
-    border-color: var(--primary);
+    background: transparent;
+    border-color: white;
+    float: right;
+}
+
+#addButton:hover {
+    color: var(--topAndBottom);
+    background-color: white;
 }
 
 span {
