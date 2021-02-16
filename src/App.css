@@ -1,11 +1,11 @@
 :root {
-    --primary: #10375c; /* #16697A 2994b2 */
+    --primary: #2c365d; /* #16697A 2994b2 */
     --secondary: #BBBFCA; /* #BBBFCA */
-    --tertiary: #f4f6ff; /* #E8E8E8 */
+    --tertiary: white; /* #E8E8E8 */
     --gray: #F4F4F2; /* #F2F2F2 */
     --shadow: #A9A9A9;
-    --topAndBottom: #f3c623; /* #212121 ffb400 */
-    --name: #127681; /* #DB6400 474744 */
+    --topAndBottom: #78b7bb; /* #212121 ffb400 */
+    --name: #ff5e3a; /* #DB6400 474744 */
 }
 
 .row-header{
@@ -61,10 +61,6 @@ p, Button {
     -o-background-size: cover;
     background-size: cover;
     min-height: 100vh;
-}
-
-#mainTint {
-    background-color: rgba(16, 55, 92, 0.1);
 }
 
 #homeBackground {

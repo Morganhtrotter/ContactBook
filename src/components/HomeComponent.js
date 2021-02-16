@@ -21,7 +21,7 @@ class Home extends Component {
 	toggleEditModal(id) {
 		this.setState({
 			isEditModalOpen: !this.state.isEditModalOpen,
-			editID: id
+			editID: id // Set state to id of the contact the user is editing
 		});
 	}
 	
@@ -44,6 +44,7 @@ class Home extends Component {
 	render() {
 		var numberInList = 0;
 		var contactArray = [];
+		// Bubble Sort
 		const swap = (array, i, j) => {
 			var temp = array[i];
 			array[i] = array[j];
@@ -59,6 +60,7 @@ class Home extends Component {
 			}
 			return array;
 		};
+		// Sort array of contacts in alphabetical order
 		this.props.contacts.map((contact) => {
 			contactArray.push(contact);
 		});

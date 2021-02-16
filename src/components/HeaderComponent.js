@@ -26,9 +26,11 @@ class Header extends Component {
 		var idPosted = 0;
 		var posted = false;
 		var idArray = [];
+		// Copy contacts into temp array
 		for (var i = 0; i < this.props.contacts.length; i++) {
 			idArray.push(this.props.contacts[i].id);
 		}
+		// Sort temp array in order by id, ascending
 		idArray.sort(function(a, b){return a-b});
 		// Find the first instance of an absent id in database
 		console.log(idArray);
