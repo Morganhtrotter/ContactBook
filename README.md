@@ -4,4 +4,4 @@ Front End Technologies Used: React/Redux, ReactStrap, HTML, CSS, JavaScript
 
 Back End Technologies Used: Node.js, simple .json server
 
-This project is hosted on a heroku server
+This project is hosted on a heroku server at: https://online-contact-book.herokuapp.com/#/home
